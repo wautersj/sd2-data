@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<meta name="viewport" content="initial-scale=1">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'/>
+	<title>SD2-Data</title>
+	<link rel="stylesheet" type="text/css" href="../../motor/css/app.css">
+	<script type="text/javascript" src="../../motor/js/dependencies/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../../motor/js/tools.js"></script>
+	<script type="text/javascript" src="../../motor/js/foursquare/SDFoursquare.js"></script>
+	<script type="text/javascript" src="../../motor/js/foursquare/FoursquareTask.js"></script>
+	<script type="text/javascript" src="../../motor/js/facebook/SDFacebook.js"></script>
+	<script type="text/javascript" src="../../motor/js/facebook/FacebookTask.js"></script>
+	<script type="text/javascript" src="../../motor/js/twitter/SDTwitter.js"></script>
+	<script type="text/javascript" src="../../motor/js/twitter/TwitterTask.js"></script>
+	<script type="text/javascript" src="../../motor/js/app.js"></script>
+</head>
+<body>
+	<div class="wrapper app-name">
+		<h1 class="param-name"><strong>SD2 - </strong><span></span></h1>
+	</div> 
+
+	<script type="text/javascript">
+		var app;
+
+		$(document).ready(function() {
+
+			//setup new  dashboard tracker
+			
+			app = new SD2({name: 'kiekenfuif14', refresh: 10});
+
+			//register API's
+
+			app.registerAPI({
+				type: 'facebook',
+				appId: '180168682188505'
+			});
+
+			app.registerAPI({	
+				type: 'twitter',
+				consumerKey: 'ykT6KyN8qOZPnSvSQDJOA',
+				consumerSecret: 'RIHxE3StucK5Jx53dBXP220lq8gXRzJaMpZiRIwBYg',
+				accessToken: '39249623-AsUqvyw8BPDXXaTjsIjwFWkuXSJh1WxTxINPvD0N6',
+				accessTokenSecret: 'eq77PMFRPtKHVA2WvXuoBwMbqfKuoMEDTsxEgzwTisze6'
+			});
+
+			app.registerAPI({	
+				type: 'foursquare',
+				clientID: 'DFFS1CGL24IDUMFB24REGQJP0OKWXD3VRUZWCZERO134GQB4',
+				clientSecret: 'ZHRYRBWELBVJXLRHIWIDU5RQKJQOH4K1WGV0VNMSBB5DI0LI',
+				redirectURI: window.location.href
+			});
+
+			//register Tasks
+
+			app.registerTask({
+				name: 'Facebook Feed',
+				type: 'facebook',
+				query: '/kiekenfuifTV/feed',
+				//query: '/260878454077979/feed',
+				file: 'facebook-feed.json',
+				interval: 14
+			});
+
+			app.registerTask({
+				name: 'Twitter Feed',
+				type: 'twitter',
+				//query: 'wautersjDev',
+				query: 'kiekenfuif',
+				file: 'twitter-feed.json',
+				interval: 24
+			});
+
+			app.registerTask({
+				name: 'Foursquare Checkins',
+				type: 'foursquare',
+				//query: '/venues/51ad02a0454ac0f8e8a2f45b', //wauters & cop
+				//query: '/venues/4b22cec2f964a520e94d24e3', //starbucks
+				query: '/venues/5460ef0d498e55299001ded0',
+				file: 'foursquare-checkins.json',
+				interval: 24
+			});
+
+			//view details
+			$('.app-name .param-name span').html(app.name);
+			$('.app-name').show();
+		});
+	</script>
+</body>
+</html>

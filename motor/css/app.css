@@ -1,0 +1,64 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	font-family: 'Lato', 'Verdana', sans-serif;
+	-webkit-font-smoothing: antialiased;
+
+	background: #EAEAEA;
+
+	padding: 20px 0 0 0;
+}
+.wrapper {
+	display: none;
+	width: 500px;
+	padding: 20px;
+
+	margin: 0 auto 20px auto;
+
+	border-radius: 20px;
+}
+.white {
+	background: white;
+}
+.param-name {
+	text-align: center;
+	text-transform: capitalize;
+	color: #232323;
+
+	font-size: 28px;
+	font-weight: 700;
+}
+.param-name span{
+	font-weight: 400;
+}
+.platform {
+	font-size: 18px;
+	line-height: 18px;
+}
+.status {
+	display: block;
+	float: right;
+
+	width: 18px;
+	height: 18px;
+
+	background: grey;
+	border-radius: 9px;
+}
+.last-update {
+	float: right;
+	margin-right: 20px;
+
+	color: grey;
+}
+.status.offline{
+	background: #B72C21;
+}
+.status.waiting{
+	background: #ff6917;
+}
+.status.online{
+	background: #85B723;
+}

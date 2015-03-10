@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<meta name="viewport" content="initial-scale=1">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'/>
+	<title>SD2 Digiti</title>
+	<link rel="stylesheet" type="text/css" href="../../motor/css/app.css">
+	<script type="text/javascript" src="../../motor/js/dependencies/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="../../motor/js/tools.js"></script>
+	<script type="text/javascript" src="../../motor/js/foursquare/SDFoursquare.js"></script>
+	<script type="text/javascript" src="../../motor/js/foursquare/FoursquareTask.js"></script>
+	<script type="text/javascript" src="../../motor/js/facebook/SDFacebook.js"></script>
+	<script type="text/javascript" src="../../motor/js/facebook/FacebookTask.js"></script>
+	<script type="text/javascript" src="../../motor/js/twitter/SDTwitter.js"></script>
+	<script type="text/javascript" src="../../motor/js/twitter/TwitterTask.js"></script>
+	<script type="text/javascript" src="../../motor/js/app.js"></script>
+</head>
+<body>
+	<div class="wrapper app-name">
+		<h1 class="param-name"><strong>SD2 - </strong><span></span></h1>
+	</div>
+
+	<script type="text/javascript">
+		var app;
+
+		$(document).ready(function() {
+
+			//setup new  dashboard tracker
+			
+			app = new SD2({name: 'digiti'});
+
+			//register API's
+
+			app.registerAPI({	
+				type: 'foursquare',
+				clientID: 'DFFS1CGL24IDUMFB24REGQJP0OKWXD3VRUZWCZERO134GQB4',
+				clientSecret: 'ZHRYRBWELBVJXLRHIWIDU5RQKJQOH4K1WGV0VNMSBB5DI0LI',
+				redirectURI: window.location.href
+			});
+
+			app.registerAPI({	
+				type: 'twitter',
+				consumerKey: 'ykT6KyN8qOZPnSvSQDJOA',
+				consumerSecret: 'RIHxE3StucK5Jx53dBXP220lq8gXRzJaMpZiRIwBYg',
+				accessToken: '39249623-AsUqvyw8BPDXXaTjsIjwFWkuXSJh1WxTxINPvD0N6',
+				accessTokenSecret: 'eq77PMFRPtKHVA2WvXuoBwMbqfKuoMEDTsxEgzwTisze6'
+			});
+
+			app.registerAPI({
+				type: 'facebook',
+				appId: '180168682188505'
+			});
+
+			//register Tasks
+
+			app.registerTask({
+				name: 'Facebook Feed',
+				type: 'facebook',
+				query: '/digiti.be/feed',
+				file: 'facebook-feed.json',
+				interval: 6
+			});
+
+			app.registerTask({
+				name: 'Twitter Feed',
+				type: 'twitter',
+				query: 'digiti',
+				file: 'twitter-feed.json',
+				interval: 12
+			});
+
+			app.registerTask({
+				name: 'Foursquare Checkins',
+				type: 'foursquare',
+				query: '/venues/4bfb65caab180f47e2d4b3ce',
+				file: 'foursquare-checkins.json',
+				interval: 10
+			});
+
+			//view details
+			$('.app-name .param-name span').html(app.name);
+			$('.app-name').show();
+		});
+	</script>
+</body>
+</html>
